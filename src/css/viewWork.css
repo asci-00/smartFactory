@@ -1,0 +1,26 @@
+.main-box {
+    margin:5% auto;
+    width:40%;
+    min-height:300px;
+    padding:10px;
+    background:#eee;
+    border-radius:10px;
+}
+.side-border {
+    width:300px;
+    border-left:15px solid gray;
+    border-right:15px solid gray;
+}
+.box-border {
+    border:0!important;
+}
+.info-box {
+    width:480px!important;
+    padding:10px;
+}
+.info-box:after {
+    content:"";
+    display:block;
+    clear:both;
+}
+.info-box div { float:left; text-align:center; font-size:1.2em; }
