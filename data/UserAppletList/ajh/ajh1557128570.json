@@ -1,0 +1,1 @@
+{"appletNumber":null,"appletInfo":{"user":"ajh"},"trigger":{"sensor":"switch2","operators":"on","threshold":null},"action":{"actuators":"LED2","value":"on"}}

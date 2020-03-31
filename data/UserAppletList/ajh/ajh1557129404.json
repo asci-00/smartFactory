@@ -1,0 +1,1 @@
+{"appletNumber":null,"appletInfo":{"user":"ajh"},"trigger":{"sensor":"PSD","operators":">","threshold":"42"},"action":{"actuators":"LED5","value":"off"}}

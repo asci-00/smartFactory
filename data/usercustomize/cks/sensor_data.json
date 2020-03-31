@@ -1,0 +1,23 @@
+{
+    "actuator": {
+        "LED1": "off", 
+        "LED0": "off", 
+        "LED3": "off", 
+        "LED2": "on", 
+        "LED5": "off", 
+        "LED4": "off", 
+        "LED7": "off", 
+        "LED6": "off", 
+        "buzzer": "off", 
+        "RGB": "green", 
+        "DCmotor": "stop"
+    }, 
+    "sensor": {
+        "temperature": "31.72", 
+        "switch2": "unpressed", 
+        "switch1": "unpressed", 
+        "PSD": "77", 
+        "VR": "0.08", 
+        "CDS": "4095"
+    }
+}

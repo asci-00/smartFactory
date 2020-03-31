@@ -1,0 +1,1 @@
+{"appletNumber":null,"appletInfo":{"user":"ajh"},"trigger":{"sensor":"VR","operators":"<","threshold":"5"},"action":{"actuators":"LED1","value":"off"}}

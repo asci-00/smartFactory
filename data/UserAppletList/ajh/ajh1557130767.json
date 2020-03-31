@@ -1,0 +1,1 @@
+{"appletNumber":null,"appletInfo":{"user":"ajh"},"trigger":{"sensor":"temperature","operators":"<","threshold":"100"},"action":{"actuators":"buzzer","value":"off"}}

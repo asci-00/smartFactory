@@ -1,0 +1,23 @@
+{
+	"LED": 		{"checkbox" : ["on", "off"]} , 
+	"buzzer": 	{"checkbox" : ["on", "off"]} , 
+	"RGB": {	"radio": ["red", "blue", "green", "off"]}, 
+	"DCmotor": {	"radio": ["forward", "backward", "stop"]},
+	"switch": 	{"checkbox" : ["pressed", "unpressed"]} ,  
+	"temperature": {
+		"radio" : ["<", ">", "="], 
+		"number" : ["input value"]
+	},
+	"PSD": {
+		"radio" : ["<", ">", "="], 
+		"number" : ["input value"]		
+	}, 
+	"VR": {
+		"radio" : ["<", ">", "="], 
+		"number" : ["input value"]
+	}, 
+	"CDS": {
+		"radio" : ["<", ">", "="], 
+		"number" : ["input value"]
+	}
+}
