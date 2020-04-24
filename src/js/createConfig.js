@@ -7,7 +7,6 @@ class Toggle {
     constructor(onmsg, offmsg, obj) {
         [this.onMsg, this.offMsg, this.targetOBJ, this.state] = [onmsg, offmsg, obj, false]
         this.value = offmsg
-        console.log(this.targetOBJ)
         this.targetOBJ.value = this.value
     }
     onclick = e => {
@@ -51,9 +50,19 @@ class ConfigBox {
                 case 'number':
                     ObjList.push(this.CreateInput(type, 'value', value, key))
                     break
+                case 'object':
+                    var dragBox = document.createElement('div')
+                    dragBox.id='logic-box'
+                    dragBox.classList.add('wt-box')
+                    dragBox.classList.add('unit-box')
+                    dragBox.style.margin="10px auto"
+                    dragBox.style.float="none"
+                    ObjList.push(dragBox)
+                    break
             }
         }
         ObjList.map(input => container.appendChild(input))
+        DragProc.boxInit()
         ConfigBox.show(`${this.type}-config`)
     }
     CreateInput = (type, name, value = 0, key = '') => {
@@ -89,4 +98,21 @@ class ConfigBox {
         document.getElementById(name).style.display = 'block'
     static remove = name =>
         document.getElementById(`${name}-config`).innerHTML = ''
+    static setConfig = (type, name, fType, value, query=false) => {
+        switch(fType) {
+            case 'checkbox':
+                if(value == 0) {
+                    query ?
+                        document.querySelector(`[for=vir-action]`).click():
+                        document.getElementById(`${type}-label`).click()
+                }
+                break
+            case 'radio':
+                document.getElementsByName(name)[value].checked=true
+                break
+            case 'number':
+                document.getElementsByName(name)[0].value = value
+                break
+        }
+    }
 }

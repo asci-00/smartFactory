@@ -1,7 +1,6 @@
 <?php
-    $unit_file = file_get_contents("{$_SESSION['root']}/unit.json");
-    $unit_data = json_decode($unit_file, true);
-
+    include_once ("{$_SERVER["DOCUMENT_ROOT"]}/src/func/fileRead.php");
+    $unit_data = file_to_json("unit.json");
     function getWorkList($db, $user = 'shared') {
         $query = ($user == 'shared') ? 
             "SELECT * FROM work WHERE shared is true  order by id":
@@ -65,9 +64,9 @@
                 </div>
                 <br>
                 <div class='btn-group' role='group'>
-                    <button type='button' name='add' onclick='sharing()' class='btn btn-info  btn-sm'>share</button>
+                    <button type='button' name='add' onclick='share()' class='btn btn-info  btn-sm'>share</button>
                     <button type='button' name='add' onclick='edit()' class='btn btn-success  btn-sm'>edit</button>
-                    <button class='btn btn-danger  btn-sm' onclick='delete()'>delete</button>
+                    <button class='btn btn-danger  btn-sm' onclick='del()'>delete</button>
                 </div>
             </div>
         </div>");

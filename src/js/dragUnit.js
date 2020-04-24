@@ -6,11 +6,18 @@ class DragProc {
         'action' : ['actuator']
     }
     static init() {  
-        let originImg = document.getElementsByClassName('unit-img')
+        this.unitInit()
+        this.boxInit()
+        
+    }
+    static unitInit() {
+        const originImg = document.getElementsByClassName('unit-img')
         for(var idx = 0; idx < originImg.length; idx++) {
             originImg[idx].addEventListener("dragstart", DragProc.dragstart)
             originImg[idx].addEventListener("dragend", DragProc.dragend)
         }
+    }
+    static boxInit() {
         const containers = document.getElementsByClassName('unit-box')
         for(var idx = 0; idx < containers.length; idx++) {
             containers[idx].addEventListener("dragover", DragProc.dragover)
@@ -55,11 +62,10 @@ class DragProc {
         obj.addEventListener('dragstart', DragProc.dragstart)
         obj.addEventListener("click", DragProc.appliedClick)
         box.appendChild(obj)
-
         ConfigBox.remove(this.getType(box.id))
         ConfigBox.hide()
         new ConfigBox(
-            this.getName(this.nowDrag).replace(/[0-9]/g, ''), 
+            this.getName(obj.id).replace(/[0-9]/g, ''), 
             this.getType(box.id))
             .SetConfig()
         
@@ -77,4 +83,3 @@ class DragProc {
     static getType = str => str.split('-')[0]
     static getName = str => str.split('-')[1]
 }
-window.onload = () => DragProc.init() 

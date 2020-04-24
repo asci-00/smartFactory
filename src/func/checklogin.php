@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once ("{$_SESSION['root']}/dbinfo.php");
+    include_once ("./dbinfo.php");
     $member_db = dbopen('user');
     $id = $_POST['id'];
     $pw = $_POST['pw'];
@@ -21,4 +21,4 @@
                 location.href='/src/login.php';
             </script>");
     }
-?>
+?>  

@@ -1,20 +1,19 @@
 <?php
     session_start();
-    include_once ("{$_SESSION['root']}/src/checksession.php");
+    include_once ("./checksession.php");
+    include_once ("./fileRead.php");
 
     $userID = $_SESSION['login'];
     // get pinmap from json
-    $path = "{$_SESSION['root']}/data/usercustomize/{$userID}/pinmap.json";
-
-    $json_string = file_get_contents($path);
-    $json_data = json_decode($json_string, true);
+    $path = "usercustomize/{$userID}/pinmap.json";
+    $json_data = file_to_json($path);
     foreach($json_data as $key => $val){
         foreach($json_data[$key] as $key2 => $value){
             $updatedPinmapArr[$key][$key2] = $_POST[$key.'-'.$key2];
         }
     }
     $json_update = json_encode($updatedPinmapArr);
-    $fp = fopen($path, 'w');
+    $fp = fopen("{$_SERVER["DOCUMENT_ROOT"]}/data/{$path}", 'w');
     fwrite($fp, $json_update);
     fclose($fp);
 

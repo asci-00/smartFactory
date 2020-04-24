@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once ("{$_SESSION['root']}/dbinfo.php");
+    include_once ("./func/dbinfo.php");
     $work_db = dbopen("worklist");
 
     $user = $_SESSION['login'];

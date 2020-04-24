@@ -12,10 +12,9 @@
     <body>
         <?php
             session_start();
-            $_SESSION['root'] = $_SERVER['DOCUMENT_ROOT'];
-            include_once ("{$_SESSION['root']}/src/nav.php");
-            include_once ("{$_SESSION['root']}/dbinfo.php");
-            include_once ("{$_SESSION['root']}/src/getWorkList.php");
+            include_once ("src/nav.php");
+            include_once ("src/func/dbinfo.php");
+            include_once ("src/func/getWorkList.php");
             $work_db = dbopen("worklist");
             $workData = getWorkList($work_db);
             mysqli_close($work_db);
@@ -59,7 +58,7 @@
                 ?>
             </div>
         </div>
-        <?php include("{$_SESSION['root']}/src/footer.php");?>
+        <?php include("./src/footer.php");?>
     </body>
 </html>
 

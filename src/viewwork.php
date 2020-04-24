@@ -10,19 +10,28 @@
         <link href="/src/css/bootstrap.min.css" rel="stylesheet">
         <link href="/src/css/viewWork.css" rel="stylesheet">
         <link href="/src/css/newworkPage.css" rel="stylesheet">
+        <script>
+            <?php
+                session_start();
+                include_once ("./func/dbinfo.php");
+                include_once ("./func/getWorkList.php");
+                $work_db = dbopen("worklist");
+                $data = getWork($work_db, $_GET['workID']);
+                mysqli_close($work_db);
+            ?>
+            var share = () => 
+                window.location.href = '/src/func/data_func.php?type=share&&id=<?=$data['id']?>'
+            var edit = () =>
+                window.location.href = "/src/newWork.php?id=<?=$data['id']?>"
+            var del = () =>
+                window.location.href = '/src/func/data_func.php?type=delete&&id=<?=$data['id']?>'
+        </script>
     </head>
     <body>
-        <?php
-            session_start();
-            $_SESSION['root'] = $_SERVER['DOCUMENT_ROOT'];
-            include_once ("{$_SESSION['root']}/src/nav.php");
-            include_once ("{$_SESSION['root']}/dbinfo.php");
-            include_once ("{$_SESSION['root']}/src/getWorkList.php");
-            $work_db = dbopen("worklist");
-            $data = getWork($work_db, $_GET['workID']);
-            mysqli_close($work_db);
+        <? 
+            include_once ("./nav.php");
+            echo setViewBox($data);
+            include("./footer.php");
         ?>
-        <?=setViewBox($data)?>
-        <?php include("{$_SESSION['root']}/src/footer.php");?>
     </body>
 </html>

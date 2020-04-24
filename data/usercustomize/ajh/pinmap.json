@@ -1,1 +1,1 @@
-{"sensor":{"switch1":"2","switch2":"11","CDS":"adc1","temperature":"adc2","PSD":"adc3","VR":"adc0"},"actuator":{"LED0":"16","LED1":"27","LED2":"0","LED3":"1","LED4":"24","LED5":"28","LED6":"29","LED7":"3","buzzer":"7","DCmotor":"21,22","RGB":"26,23,15"}}
+{"sensor":{"switch1":"2","switch2":"11","CDS":"adc1","temperature":"adc2","PSD":"adc3","VR":"adc0", "camera":"100"},"actuator":{"LED0":"16","LED1":"27","LED2":"0","LED3":"1","LED4":"24","LED5":"28","LED6":"29","LED7":"3","buzzer":"7","DCmotor":"21,22","RGB":"26,23,15"}}

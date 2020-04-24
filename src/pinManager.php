@@ -15,20 +15,19 @@
     <body>
         <?php
             session_start();
-            include_once ("{$_SESSION['root']}/src/nav.php");
-            include_once ("{$_SESSION['root']}/src/checksession.php");
+            include_once ("./nav.php");
+            include_once ("./func/checksession.php");
+            include_once ("./func/fileRead.php");
 
             $userID = $_SESSION['login'];
             // get pinmap from json
-            $path = "{$_SESSION['root']}/data/usercustomize/{$userID}/pinmap.json";
-            $file = file_get_contents($path);
-            $data = json_decode($file, true);
+            $data = file_to_json("usercustomize/{$userID}/pinmap.json")
         ?>
         <div class="container" align="center">
             <h3>Your Pinmap</h3>
             <p><h5>check & update your setting</h5></p>
             <div align="center">
-                <form method="POST" action="updatePin.php">
+                <form method="POST" action="./func/updatePin.php">
                     <table  align="center" border=1>
                     <tr><th>module</th><th>pin num</th></tr>
                     <?php
@@ -50,6 +49,6 @@
                 </form>
             </div>
         </div>
-        <?php include("{$_SESSION['root']}/src/footer.php");?>
+        <?php include("./footer.php");?>
     </body>
 </html>

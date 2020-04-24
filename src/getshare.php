@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include_once ("{$_SESSION['root']}/dbinfo.php");
-    include_once ("{$_SESSION['root']}/src/checksession.php");
+    include_once ("./func/dbinfo.php");
+    include_once ("./func/checksession.php");
     $work_db = dbopen("worklist");
 
     $ID = $_GET['workID'];

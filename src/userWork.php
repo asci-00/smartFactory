@@ -12,10 +12,11 @@
     <body>
         <?php
             session_start();
-            include_once ("{$_SESSION['root']}/src/nav.php");
-            include_once ("{$_SESSION['root']}/src/checksession.php");
-            include_once ("{$_SESSION['root']}/dbinfo.php");
-            include_once ("{$_SESSION['root']}/src/getWorkList.php");
+            
+            include_once ("./nav.php");
+            include_once ("./func/dbinfo.php");
+            include_once ("./func/getWorkList.php");
+            include_once ("./func/checksession.php");
 
             $userID = $_SESSION['login'];
             $work_db = dbopen("worklist");
@@ -45,6 +46,6 @@
                 ?>
             </div>
         </div>
-        <?php include("{$_SESSION['root']}/src/footer.php");?>
+        <?php include("./footer.php");?>
     </body>
 </html>

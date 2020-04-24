@@ -14,7 +14,7 @@
     <body>
         <?php
             session_start();
-            include_once ("{$_SESSION['root']}/src/nav.php");
+            include_once ("./nav.php");
         ?>
 
         <div class="wrapper fadeInDown">
@@ -26,7 +26,7 @@
             </div>
 
             <!-- Login Form -->
-            <form method='post' action='/src/checklogin.php'>
+            <form method='post' action='/src/func/checklogin.php'>
             <input type="text" id="login" class="fadeIn second" name="id" placeholder="login">
             <input type="password" id="password" class="fadeIn third" name="pw" placeholder="password">
             <input type="submit" class="fadeIn fourth" value="Log In">
@@ -40,6 +40,6 @@
         </div>
         </div>
 
-        <?php include("{$_SESSION['root']}/src/footer.php");?>
+        <?php include("./footer.php");?>
     </body>
 </html>
