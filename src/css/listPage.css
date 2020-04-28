@@ -64,6 +64,7 @@
 		vertical-align: middle;
 	}
 }
+a { font-weight:400; }
 a:hover { text-decoration: none;}
 body {font-family: "NanumBarunGothic",  sans-serif; padding-top: 90px; }
 .container-fluid { padding: 0;}

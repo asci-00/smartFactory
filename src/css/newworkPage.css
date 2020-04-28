@@ -76,6 +76,7 @@
     width:100%;
     padding:10px;
     border-bottom:15px solid powderblue;
+    border-radius:10px;
     margin-bottom:30px;
 }
 #applied-unit-box:after {

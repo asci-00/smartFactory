@@ -1,0 +1,1 @@
+{"value": "pressed", "actuator": "LED3", "action": "on", "trigger": "switch2", "operator": "=", "id": 8, "shareUsers": ";", "user": "ajh", "shared": null}

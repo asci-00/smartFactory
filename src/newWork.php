@@ -103,8 +103,9 @@
                 </div>
 
                 <div id='unit-config-box'>
-                    Unit config setting<hr/>
+                    SETTING<hr/>
                     <div id='trigger-config'>
+                    <!--if camera click additional unit (machine learning, ..) modal show if unit click in modal apply camera-->
                     </div>
                     <div id='action-config'>
                     </div>

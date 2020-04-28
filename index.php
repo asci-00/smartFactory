@@ -8,6 +8,7 @@
 
         <link href="/src/css/nomalize.css" rel="stylesheet">
         <link href="/src/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/src/css/form.css" rel="stylesheet">
     </head>
     <body>
         <?php
@@ -23,12 +24,9 @@
             <h3>Recommended for you !</h3>
             <p><h5>Make your own applet..</h5></p>
             <div style="float: right">
-                <form action="SearchResult.php" class="search-form" method="post">
-                    <div class="form-group has-feedback">
-                        <label for="search" class="sr-only">Search</label>
-                        <input type="text" class="form-control" name="search" id="search" placeholder="search">
-                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                    </div>
+                <form class="search-container">
+                    <input type="text" id="search-bar" placeholder="Search">
+                    <a href="#"><img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a>
                 </form>
             </div>
         </div><br>
