@@ -1,1 +1,0 @@
-{"appletNumber":241,"appletInfo":{"user":"cks"},"trigger":{"sensor":"switch2","operators":"=","threshold":"pressed"},"action":{"actuators":"RGB","value":"rgboff"}}

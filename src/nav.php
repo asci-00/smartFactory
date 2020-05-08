@@ -17,6 +17,7 @@
                     <ul class="nav navbar-nav">
 			    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
 			    <li class="nav-item"><a class="nav-link" href="/src/userWork.php">Applet</a></li>
+                <li class="nav-item"><a class="nav-link" href="/src/createLearning.php">Learning</a></li>
 			    <li class="nav-item"><a class="nav-link" href="/src/pinManager.php">Pin manager</a></li>
         	            <?php
                             $stat = isset($_SESSION['login']) ? 'out' : 'in';

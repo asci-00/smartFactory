@@ -13,6 +13,7 @@
         return $value;
     }
     function sharedData($id, $db) {
+        global $db;
         $query = "UPDATE work SET shared='1' WHERE id='{$id}'";
         mysqli_query($db, $query);
         mysqli_close($db);
@@ -20,7 +21,7 @@
     }
 
     function applyData($data, $db) {
-        global $user, $db;
+        global $user, $db, $unit_data;
         $trigger = $data['trigger'];
         if(isset($data['operator'])) $operator = $data['operator'];
         else $operator = null;
@@ -38,20 +39,47 @@
 
         $res = mysqli_query($db, $query);
         $data = mysqli_fetch_array($res);
-
         mysqli_close($db);
-        $exe = "cd /home/pi/www/Factory/py && python3 server_client.py {$user} {$data['id']} add";
-        $return = exec($exe);
+
+        if($value == 'shape-learning' || $value == 'color-learning') {
+            $uploads_dir = "{$_SERVER["DOCUMENT_ROOT"]}/data/usercustomize/ajh/imgs/";
+            $allowed_ext = array('jpg','jpeg','png','gif');
+            // 변수 정리
+            echo $uploads_dir.'<br/>';
+            foreach($unit_data[$value] as $type => $data) {   
+                foreach($data as $idx => $value) {
+                    $error = $_FILES[$type]['error'][$idx];
+                    $fname = $_FILES[$type]['name'][$idx];
+                    if($fname == null || $fname == '') continue;
+                    $ext = explode('.', $fname)[1];
+
+                    if(in_array($ext, $allowed_ext) != true) {
+                        echo "허용되지 않는 확장자입니다.";
+                        continue;
+                    }
+                    // 파일 이동
+                    move_uploaded_file($_FILES[$type]['tmp_name'][$idx], "$uploads_dir/$id$type$idx");
+                }
+            }
+           
+            $learn = "cd /home/pi/www/Factory/py && python3 {$value}Learning {$data['id']} pass fail";
+            exec($learn);
+        }
+
+        $work = "cd /home/pi/www/Factory/py && python3 server_client.py {$user} {$data['id']} add";
+        $return = exec($work);
+        
         if($return == '' || $return == 'x')
             echo("<script>alert('your factory is offline');</script>");
     }
 
     function deleteData($id, $db) {
+        global $user;
         $query = "DELETE FROM work WHERE id='{$id}'";
         mysqli_query($db, $query);
         mysqli_close($db);
 
-        $exe = "cd /home/pi/www/Factory/py && python3 server_client.py {$user} {$data['id']} del";
+        $exe = "cd /home/pi/www/Factory/py && python3 server_client.py {$user} {id} del";
         $return = exec($exe);
         if($return == '' || $return == 'x')
             echo("<script>alert('your factory is offline');</script>");
@@ -60,7 +88,7 @@
 
     switch($case) {
         case 'apply':
-            applyData($_POST, $db);
+            applyData($_POST, $db, $_FILES);
         break;
         case 'share':
             sharedData($_GET['id'], $db);

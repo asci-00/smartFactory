@@ -8,13 +8,17 @@ class DragProc {
     static init() {  
         this.unitInit()
         this.boxInit()
-        
     }
     static unitInit() {
         const originImg = document.getElementsByClassName('unit-img')
         for(var idx = 0; idx < originImg.length; idx++) {
-            originImg[idx].addEventListener("dragstart", DragProc.dragstart)
-            originImg[idx].addEventListener("dragend", DragProc.dragend)
+            if(originImg[idx].id.includes('logic')) {
+                originImg[idx].addEventListener("click", modalUnitClick)
+            }
+            else {
+                originImg[idx].addEventListener("dragstart", DragProc.dragstart)
+                originImg[idx].addEventListener("dragend", DragProc.dragend)
+            }
         }
     }
     static boxInit() {
@@ -55,13 +59,11 @@ class DragProc {
         this.applyUnit(obj, box)
     }
     static applyUnit = (obj, box) => {
-        box.innerHTML = ''
-
         obj.id = `${this.getType(box.id)}-${this.getName(obj.id)}`
 
         obj.addEventListener('dragstart', DragProc.dragstart)
         obj.addEventListener("click", DragProc.appliedClick)
-        box.appendChild(obj)
+        applyData(obj, box)
         ConfigBox.remove(this.getType(box.id))
         ConfigBox.hide()
         new ConfigBox(

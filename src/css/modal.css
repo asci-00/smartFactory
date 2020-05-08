@@ -1,0 +1,110 @@
+.modalArea {
+    visibility: hidden;
+    opacity : 0;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: .4s;
+}
+.modalBg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30,30,30,0.9);
+}
+.modalWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    width: 500px;
+    max-width: 500px;
+    padding: 10px 30px;
+    background-color: #fff;
+    border-radius:5px;    
+}
+.modalTitle {
+    width:100%;
+    font-size:15px;
+    text-align:center;
+    font-weight: bold;
+    padding:20px 0;
+    background:#eee;
+}
+.is-show {
+    visibility: visible;
+    opacity : 1;
+}
+button {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #282828;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.move-ani {
+    margin:0 !important;
+    float:left !important;
+    left:50%;
+    transform:translateX(-50%);
+    transition:all .5s ease;
+}
+.left-move { left:0%; transform:translateX(0%);}
+#logic-config {
+    float:right;
+    width:70%;
+    min-height:300px;
+    padding:10px;
+    border-bottom:1px solid gray;
+    opacity:0;
+    animation: fade-in .5s;
+    animation-delay: .5s;
+    -webkit-animation: fade-in .5s;
+    -webkit-animation-delay: .5s;
+    animation-fill-mode : forwards;
+    -webkit-animation-fill-mode : forwards;
+
+}
+#logic-config:before {
+	content:attr(title);
+	display:block;
+    clear:both;
+    border-right:5px solid gray;
+    border-left:5px solid gray;
+    color:powderblue;
+    margin-bottom:15px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.logic-inner-config {
+    float:left;
+    margin:0 1%;
+    border-radius:5px;
+    text-align:center;
+}
+.logic-unit { 
+    float:none;
+    margin:10px auto;
+    border:1px solid black;
+    background-size:cover;
+}
+.config-title {
+    font-size:20px;
+   font-weight:bold;
+   text-transform:uppercase;
+   padding-bottom:10px;
+   border-bottom:1px solid gray;
+}
+
+
+@keyframes fade-in {
+    from { opacity :0; }
+    to { opacity :1; }
+}l
+@-webkit-keyframes fade-in {
+    from { opacity :0; }
+    to { opacity :1; }
+}

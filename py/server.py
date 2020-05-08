@@ -11,13 +11,13 @@ class UserManager:
 
    def addUser(self, username, conn, addr):
       if username in self.users.keys():
-         print('이미 접속된 사용자\n')
+         print('Is already connect user\n')
          return None
       lock.acquire()
       self.users[username] = (conn, addr)
       lock.release()
       print(self.users.keys())
-      print('%s 접속 [%d]' %(username, len(self.users)))
+      print('%s key connect [%d]' %(username, len(self.users)))
       return username
 
    def removeUser(self, username):
@@ -26,22 +26,19 @@ class UserManager:
         lock.acquire()
         del self.users[username]
         lock.release()
-        print('disconnect 팩토리 [%d]' %len(self.users))
+        print('disconnect Factory [%d]' %len(self.users))
 
    def messageHandler(self, username, msg):
       if username == 'PHP':
-         targetuser = msg.split("=>")[0]
-         content = msg.split("=>")[1]
-         if targetuser in self.users.keys():
-            self.sendMessageTo(content, targetuser)
-         else:
-            self.sendMessageTo('x', 'PHP')
+        targetuser = msg.split("=>")[0]
+        content = msg.split("=>")[1]
+        if targetuser in self.users.keys():
+           self.sendMessageTo(content, targetuser)
+        else:
+           self.sendMessageTo('x', 'PHP')
       else :
-         if msg == 'success':
-            self.sendMessageTo('o', 'PHP')
-         else :
-            self.sendMessageTo('x', 'PHP')
-         return
+        self.sendMessageTo(msg, 'PHP') 
+        return
 
    def sendMessageTo(self, msg, target):
       self.users[target][0].send(msg.encode())
@@ -51,7 +48,7 @@ class MyTcpHandler(socketserver.BaseRequestHandler):
    userman = UserManager()
     
    def handle(self):
-      print('[%s] 연결됨' %self.client_address[0])
+      print('[%s] connect' %self.client_address[0])
       try:
          username = self.registerUsername()  #처음 receive (사용자 id)
          msg = self.request.recv(1024)       #]
@@ -62,7 +59,7 @@ class MyTcpHandler(socketserver.BaseRequestHandler):
             msg = self.request.recv(1024)                
       except Exception as e:
          print(e)
-      print('[%s] 접속종료' %self.client_address[0])
+      print('[%s] disconnect' %self.client_address[0])
       self.userman.removeUser(username)
 
    def registerUsername(self):

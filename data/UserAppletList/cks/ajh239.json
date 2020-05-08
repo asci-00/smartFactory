@@ -1,1 +1,0 @@
-{"appletNumber":239,"appletInfo":{"user":"ajh"},"trigger":{"sensor":"VR","operators":"<","threshold":"2.0"},"action":{"actuators":"DCmotor","value":"stop"}}

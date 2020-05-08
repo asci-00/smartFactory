@@ -20,5 +20,14 @@
 	"CDS": {
 		"radio" : ["<", ">", "="], 
 		"number" : ["input value"]
+	},
+
+	"color-learning" : {
+		"pass" : ["file", "file", "file"],
+		"fail" : ["file", "file", "file"]
+	},
+	"shape-learning" : {
+		"pass" : ["file", "file", "file"],
+		"fail" : ["file", "file", "file"]
 	}
 }

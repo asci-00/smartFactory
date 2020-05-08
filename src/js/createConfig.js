@@ -18,12 +18,85 @@ class Toggle {
         e.target.innerHTML = this.targetOBJ.value = msg
     }
 }
+const logicApplyBox = () => {
+    const dragBox = document.createElement('div')
+    dragBox.id='logic-box'
+    dragBox.classList.add('wt-box')
+    dragBox.classList.add('unit-box')
+    dragBox.classList.add('move-ani')
+    dragBox.style.margin="10px auto"
+    dragBox.style.float="none"
+
+    const innerText = document.createElement('span')
+    innerText.innerHTML='CLICK'
+    dragBox.appendChild(innerText)
+
+    return dragBox
+}
+const logicApply = obj => {    
+    const box = document.getElementById('logic-box')
+    const logicType = document.querySelector('[name=logic_type]')
+    applyData(obj, box) //unit apply
+
+    box.classList.add('left-move')  //box left move
+
+    const logicConfig = document.createElement('div') //create logic config box
+    logicConfig.id = 'logic-config'
+    const id = obj.id.split('-')
+    const name = `${id[1]}-${id[2]}`
+    logicType.value = name
+    setAttributes(logicConfig, {'title' : name})
+    
+    const unit = unit_info[name]
+    const columns = Object.keys(unit).length
+
+    const width = (100 / columns) - columns
+    
+    const innerConfig = document.createElement('div')
+    innerConfig.classList.add('logic-inner-config')
+    innerConfig.style.width=`${width}%`
+    /*type에 따른 처리 필요 - 지금은 file만*/
+
+    for(var text in unit) {
+        const dConfig = innerConfig.cloneNode(true)
+        const title = document.createElement('div')
+        title.innerHTML = text
+        title.classList.add('config-title')
+
+        dConfig.appendChild(title)
+
+        for(var input in unit[text]) {
+            const set = document.createElement('label') //input으로 change
+            const file = document.createElement('input')
+
+            setAttributes(set, {
+                'for' : text+input, 
+                'class' : 'wt-box unit-box logic-unit',
+            })
+            setAttributes(file, {
+                'id' : text+input,
+                'name' : `${text}[${input}]`,
+                'type' : 'file',
+                'accept' : 'image/*',
+                'onChange' : 'loadFile(event)'
+            })
+            file.style.display='none'
+
+            dConfig.appendChild(file)
+            dConfig.appendChild(set)
+        }
+        logicConfig.appendChild(dConfig)
+    }
+
+    return logicConfig
+}
 
 class ConfigBox {
     constructor(name, type) {
         this.name = name
         this.type = type
         this.info = unit_info[name]
+        this.logic = false
     }
     SetConfig = () => {
         var ObjList = []
@@ -51,18 +124,15 @@ class ConfigBox {
                     ObjList.push(this.CreateInput(type, 'value', value, key))
                     break
                 case 'object':
-                    var dragBox = document.createElement('div')
-                    dragBox.id='logic-box'
-                    dragBox.classList.add('wt-box')
-                    dragBox.classList.add('unit-box')
-                    dragBox.style.margin="10px auto"
-                    dragBox.style.float="none"
-                    ObjList.push(dragBox)
+                    const obj = logicApplyBox()
+                    ObjList.push(obj)
+                    this.logic = true
                     break
             }
         }
         ObjList.map(input => container.appendChild(input))
-        DragProc.boxInit()
+        if(this.logic) modalInit('logic-box')
+        this.logic = false
         ConfigBox.show(`${this.type}-config`)
     }
     CreateInput = (type, name, value = 0, key = '') => {
