@@ -11,7 +11,7 @@ json format
   sharedUsers : shared user list(string)
 }
 
-ex)
+ex) id는 number가 아니라 uuid 로 바꾸면됨
 
 +----+------+---------+----------+----------------+----------+---------+--------+------------+
 | id | user | trigger | operator | value          | actuator | action  | shared | shareUsers |
