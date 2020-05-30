@@ -1,2 +1,29 @@
 Smart Factory FrontEnd(WEB)
   read BackEnd (json)
+2020-05-29
+  unit module update
+  unit_info.json
+  -before
+    { 
+      'unit name' : {'input type' : 'input value', ... }, 
+      ...
+    }
+    ex) 
+    {
+      'CDS' : {
+        'radio' : ['<', '>', '='],
+        'number' : ['input value']
+      }, ...
+    }
+  -after
+    {
+      'unit name' : {'input name' : {'input type' : 'input value' } },
+      ...
+    }
+    ex)
+    {
+      'CDS' : {
+        "operator" : {"radio" : ["<", ">", "="]}, 
+        "value" : {"number" : ["input value"]}
+      }, ...
+    }
