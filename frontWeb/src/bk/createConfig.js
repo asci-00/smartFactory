@@ -102,26 +102,20 @@ class ConfigBox {
         var ObjList = []
         var container = document.getElementById(`${this.type}-config`)
 
-        for (var name in this.info) for ( var input in this.info[name]) {
-            var [type, value] = [input, this.info[name][input][0]]
-            if(name == 'object') {
-                const obj = logicApplyBox()
-                ObjList.push(obj)
-                this.logic = true
-                break;
-            }
-            else switch(input) {
+        for (var input in this.info) {
+            var [type, value] = [input, this.info[input][0]]
+            switch(input) {
                 case 'checkbox':
-                    const hiddenContent = this.CreateInput('hidden', name, this.info[name][input][1])
-                    ObjList.push(this.CreateInput(input, `vir-${name}`))
-                    ObjList.push(this.setLabel(input, `vir-${name}`,  
-                        this.info[name][input], 
-                        hiddenContent))
+                    var _type = (this.type == 'trigger') ? 'value' : 'action'
+                    ObjList.push(this.CreateInput(input, `vir-${_type}`))
+                    var hiddenContent = this.CreateInput('hidden', _type, this.info[input][1])
+                    ObjList.push(this.setLabel(input, `vir-${_type}`, this.info[input], hiddenContent))
                     ObjList.push(hiddenContent)
                     break
                 case 'radio':
-                    for(var key in this.info[name][input]) {
-                        var value = this.info[name][input][key]
+                    var name = (this.type == 'trigger') ? 'operator' : 'action'
+                    for(var key in this.info[input]) {
+                        var value = this.info[input][key]
                         ObjList.push(this.CreateInput(type, name, value, key))
                         ObjList.push(this.setLabel(type, name+key, value))
                     }
@@ -129,9 +123,13 @@ class ConfigBox {
                 case 'number':
                     ObjList.push(this.CreateInput(type, 'value', value, key))
                     break
+                case 'object':
+                    const obj = logicApplyBox()
+                    ObjList.push(obj)
+                    this.logic = true
+                    break
             }
         }
-        
         ObjList.map(input => container.appendChild(input))
         if(this.logic) modalInit('logic-box')
         this.logic = false

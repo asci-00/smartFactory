@@ -1,0 +1,32 @@
+{
+	"LED": 		{"value" : {"checkbox" : ["on", "off"]}} , 
+	"buzzer": 	{"action" : {"checkbox" : ["on", "off"]}} , 
+	"RGB": 		{"action" : {"radio": ["red", "blue", "green", "off"]}}, 
+	"DCmotor": 	{"action" : {"radio": ["forward", "backward", "stop"]}},
+	"switch": 	{"value" : {"checkbox" : ["pressed", "unpressed"]}} , 
+	"camera": 	{"object" : ["true", "false"]} ,  
+	"temperature": {
+		"operator" : {"radio" : ["<", ">", "="]}, 
+		"value" : {"number" : ["input value"]}
+	},
+	"PSD": {
+		"operator" : {"radio" : ["<", ">", "="]}, 
+		"value" : {"number" : ["input value"]}
+	}, 
+	"VR": {
+		"operator" : {"radio" : ["<", ">", "="]}, 
+		"value" : {"number" : ["input value"]}
+	}, 
+	"CDS": {
+		"operator" : {"radio" : ["<", ">", "="]}, 
+		"value" : {"number" : ["input value"]}
+	},
+	"color-learning" : {
+		"pass" : ["file", "file", "file"],
+		"fail" : ["file", "file", "file"]
+	},
+	"shape-learning" : {
+		"pass" : ["file", "file", "file"],
+		"fail" : ["file", "file", "file"]
+	}
+}
